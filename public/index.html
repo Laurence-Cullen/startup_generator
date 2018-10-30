@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="icon" href="https://ideation-factory.firebaseapp.com/bulb.ico">
+
     <title>Ideation Engine</title>
 </head>
 <body>
@@ -21,14 +23,18 @@
         <h2>Don't worry, the Ideation Engine can help you!</h2>
     </div>
     <div class="row">
-        <button id="button" type="button" class="btn btn-info">Generate an idea</button>
+        <div class="col-2">
+            <button id="generate" type="button" class="btn btn-info">Generate an idea</button>
+        </div>
+        <div class="col-2">
+            <button id="reset" type="button" class="btn btn-info">Reset</button>
+        </div>
     </div>
     <div class="row">
-        <h3 id="new_idea"></h3>
+        <h3 id="ideas"></h3>
     </div>
 
 </div>
-
 
 
 <!-- Optional JavaScript -->
@@ -56,11 +62,14 @@
         'Deliveroo',
         'Deepmind',
         'Instagram',
-        'Monzo',
         'PayPal',
         'Netflix',
-        'Cooperative',
-        'GoDaddy'
+        'Cooperative', // ?
+        'GoDaddy',
+        'Twitter',
+        'Notion', // ?
+        'GitHub', // ?
+        'SnapChat',
     ];
 
     industries = [
@@ -101,7 +110,11 @@
         'plants',
         'dogs',
         'cats',
-        'web domains'
+        'web domains',
+        'fire fighters',
+        'singles',
+        'couples',
+        'police'
     ];
 
     function generate_idea() {
@@ -115,30 +128,20 @@
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    function generate_ideas(number_of_ideas) {
-        let ideas = [];
-
-        while (ideas.length < number_of_ideas) {
-            const idea = generate_idea();
-            if (!idea in ideas) {
-                ideas.append(idea)
-            }
-        }
-        return ideas;
-    }
-
     function random_color() {
         return '#'+Math.floor(Math.random()*16777215).toString(16);
     }
 
-    $('#button').click(function () {
+    $('#generate').click(function () {
 
         const idea_string = generate_idea();
-
         const idea = "<p style='color:" + random_color() + "' >" + idea_string + "</p>";
+        $('#ideas').append(idea);
+    });
 
-        $('#new_idea').append(idea);
-    })
+    $('#reset').click(function () {
+        $('#ideas').empty();
+    });
 
 </script>
 
