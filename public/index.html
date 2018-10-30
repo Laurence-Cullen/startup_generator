@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <h1>Can't think of a startup idea? 😭</h1>
+    </div>
+    <div class="row">
+        <h2>Don't worry, the ideation engine can help you!</h2>
+    </div>
+    <div class="row">
+        <button id="button" type="button" class="btn btn-info">Generate an idea</button>
+    </div>
+    <div class="row">
+        <h3 id="new_idea"></h3>
+    </div>
+
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+    startups = [
+        'Uber',
+        'Facebook',
+        'AirBnB',
+        'Linkedin',
+        'Spotify',
+        'Stripe',
+        'Tinder',
+        'Amazon',
+        'Deliveroo',
+        'Deepmind',
+        'Instagram',
+        'Monzo',
+        'PayPal',
+        'Netflix',
+        'Cooperative',
+        'GoDaddy'
+    ];
+
+    industries = [
+        'drones',
+        'block chain',
+        'authors',
+        'big data',
+        'bin men',
+        'the music industry',
+        'magazines',
+        'fishing',
+        'farming',
+        'education',
+        'retail',
+        'bouncers',
+        'drummers',
+        'festivals',
+        'photographers',
+        'sex workers',
+        'porn',
+        'students',
+        'hobos',
+        'vegans',
+        'cars',
+        'carnists',
+        'chefs',
+        'fast fashion',
+        'the laundry industry',
+        'old people',
+        'friends',
+        'surgeons',
+        'boob jobs',
+        'makeup artists',
+        'midwives',
+        'dissertations',
+        'bird watchers',
+        'sports teams',
+        'plants',
+        'dogs',
+        'cats',
+        'web domains'
+    ];
+
+    function generate_idea() {
+        const startup = startups[getRandomInt(startups.length)];
+        const industry = industries[getRandomInt(industries.length)];
+
+        return 'The ' + startup + ' for ' + industry + '.';
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    function generate_ideas(number_of_ideas) {
+        let ideas = [];
+
+        while (ideas.length < number_of_ideas) {
+            const idea = generate_idea();
+            if (!idea in ideas) {
+                ideas.append(idea)
+            }
+        }
+        return ideas;
+    }
+
+    function random_color() {
+        return '#'+Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    $('#button').click(function () {
+
+        const idea_string = generate_idea();
+
+        const idea = "<p style='color:" + random_color() + "' >" + idea_string + "</p>";
+
+        $('#new_idea').append(idea);
+    })
+
+</script>
+
+</body>
+</html>
