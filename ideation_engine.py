@@ -1,4 +1,5 @@
 import random
+import time
 
 startups = [
     'Uber',
@@ -57,7 +58,23 @@ industries = [
 ]
 
 
-startup = startups[random.randint(0, len(startups) - 1)]
-industry = industries[random.randint(0, len(industries) - 1)]
+def generate_ideas(number_of_ideas):
+    random.seed(float(time.time()))
 
-print('The ' + startup + ' for ' + industry + '.')
+    ideas = []
+
+    while len(ideas) < number_of_ideas:
+        startup = startups[random.randint(0, len(startups) - 1)]
+        industry = industries[random.randint(0, len(industries) - 1)]
+
+        idea = 'The ' + startup + ' for ' + industry + '.'
+        if idea not in ideas:
+            ideas.append(idea)
+
+    return ideas
+
+
+startup_ideas = generate_ideas(10)
+
+for startup_idea in startup_ideas:
+    print(startup_idea)
